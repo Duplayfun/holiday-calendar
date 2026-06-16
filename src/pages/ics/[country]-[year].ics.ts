@@ -1,13 +1,13 @@
 // src/pages/ics/[country]-[year].ics.ts
 import type { APIRoute } from 'astro';
 import { generateICS } from '../../utils/ical';
-import { countries } from '../../data/countries';
+import { countries, availableYears } from '../../data/countries';
 import type { CountryData } from '../../types';
 
 export function getStaticPaths() {
   const paths: { params: { country: string; year: string } }[] = [];
   for (const c of countries) {
-    for (const year of [2025, 2026, 2027]) {
+    for (const year of availableYears) {
       paths.push({ params: { country: c.code, year: String(year) } });
     }
   }

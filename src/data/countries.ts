@@ -36,10 +36,8 @@ export const countries: CountryMeta[] = [
 
 export const defaultYear = 2026;
 
+export const availableYears = [2025, 2026, 2027];
+
 export function getCountryMeta(code: string): CountryMeta | undefined {
   return countries.find((c) => c.code === code);
-}
-
-export function isValidCountry(code: string): boolean {
-  return countries.some((c) => c.code === code);
 }

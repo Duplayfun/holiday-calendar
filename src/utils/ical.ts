@@ -5,6 +5,15 @@ function formatICalDate(dateStr: string): string {
   return dateStr.replace(/-/g, '');
 }
 
+function addDays(dateStr: string, days: number): string {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const date = new Date(y, m - 1, d + days);
+  const y2 = date.getFullYear();
+  const m2 = String(date.getMonth() + 1).padStart(2, '0');
+  const d2 = String(date.getDate()).padStart(2, '0');
+  return `${y2}-${m2}-${d2}`;
+}
+
 function escapeICalText(text: string): string {
   return text.replace(/[\\;,]/g, '\\$&').replace(/\n/g, '\\n');
 }
@@ -34,12 +43,8 @@ export function generateICS(data: CountryData): string {
 
     const dtStart = formatICalDate(holiday.date);
 
-    // DTEND is exclusive in iCal: date + 1 day
-    const endDate = new Date(holiday.date);
-    endDate.setDate(endDate.getDate() + (holiday.daysOff || 1));
-    const dtEnd = formatICalDate(
-      endDate.toISOString().split('T')[0]
-    );
+    // DTEND is exclusive in iCal: date + days_off (or 1 for single-day events)
+    const dtEnd = formatICalDate(addDays(holiday.date, holiday.daysOff || 1));
 
     lines.push(
       'BEGIN:VEVENT',
