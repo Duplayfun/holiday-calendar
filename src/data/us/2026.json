@@ -1,0 +1,20 @@
+{
+  "country": "us",
+  "year": 2026,
+  "timezone": "America/New_York",
+  "holidays": [
+    { "name": "新年", "nameEn": "New Year's Day", "date": "2026-01-01", "type": "public", "notes": "1月1日" },
+    { "name": "马丁·路德·金纪念日", "nameEn": "Martin Luther King Jr. Day", "date": "2026-01-19", "type": "public", "notes": "一月第三个周一" },
+    { "name": "总统日", "nameEn": "Presidents' Day", "date": "2026-02-16", "type": "public", "notes": "二月第三个周一" },
+    { "name": "阵亡将士纪念日", "nameEn": "Memorial Day", "date": "2026-05-25", "type": "public", "notes": "五月最后一个周一" },
+    { "name": "六月节", "nameEn": "Juneteenth", "date": "2026-06-19", "type": "public", "notes": "6月19日" },
+    { "name": "独立日", "nameEn": "Independence Day", "date": "2026-07-04", "type": "public", "notes": "7月4日（7月3日补假）" },
+    { "name": "劳动节", "nameEn": "Labor Day", "date": "2026-09-07", "type": "public", "notes": "九月第一个周一" },
+    { "name": "哥伦布日", "nameEn": "Columbus Day", "date": "2026-10-12", "type": "public", "notes": "十月第二个周一" },
+    { "name": "退伍军人节", "nameEn": "Veterans Day", "date": "2026-11-11", "type": "public", "notes": "11月11日" },
+    { "name": "感恩节", "nameEn": "Thanksgiving Day", "date": "2026-11-26", "type": "public", "notes": "十一月第四个周四" },
+    { "name": "圣诞节", "nameEn": "Christmas Day", "date": "2026-12-25", "type": "public", "notes": "12月25日" },
+    { "name": "情人节", "nameEn": "Valentine's Day", "date": "2026-02-14", "type": "observance" },
+    { "name": "万圣节", "nameEn": "Halloween", "date": "2026-10-31", "type": "observance" }
+  ]
+}

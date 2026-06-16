@@ -1,0 +1,20 @@
+{
+  "country": "us",
+  "year": 2025,
+  "timezone": "America/New_York",
+  "holidays": [
+    { "name": "新年", "nameEn": "New Year's Day", "date": "2025-01-01", "type": "public" },
+    { "name": "马丁·路德·金纪念日", "nameEn": "Martin Luther King Jr. Day", "date": "2025-01-20", "type": "public" },
+    { "name": "总统日", "nameEn": "Presidents' Day", "date": "2025-02-17", "type": "public" },
+    { "name": "阵亡将士纪念日", "nameEn": "Memorial Day", "date": "2025-05-26", "type": "public" },
+    { "name": "六月节", "nameEn": "Juneteenth", "date": "2025-06-19", "type": "public" },
+    { "name": "独立日", "nameEn": "Independence Day", "date": "2025-07-04", "type": "public" },
+    { "name": "劳动节", "nameEn": "Labor Day", "date": "2025-09-01", "type": "public" },
+    { "name": "哥伦布日", "nameEn": "Columbus Day", "date": "2025-10-13", "type": "public" },
+    { "name": "退伍军人节", "nameEn": "Veterans Day", "date": "2025-11-11", "type": "public" },
+    { "name": "感恩节", "nameEn": "Thanksgiving Day", "date": "2025-11-27", "type": "public" },
+    { "name": "圣诞节", "nameEn": "Christmas Day", "date": "2025-12-25", "type": "public" },
+    { "name": "情人节", "nameEn": "Valentine's Day", "date": "2025-02-14", "type": "observance" },
+    { "name": "万圣节", "nameEn": "Halloween", "date": "2025-10-31", "type": "observance" }
+  ]
+}
