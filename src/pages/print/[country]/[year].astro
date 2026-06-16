@@ -1,0 +1,132 @@
+---
+// src/pages/print/[country]/[year].astro
+import { countries, getCountryMeta } from '../../../data/countries';
+import { getAllMonths } from '../../../utils/calendar';
+import type { CountryData } from '../../../types';
+
+export function getStaticPaths() {
+  const paths: { params: { country: string; year: string } }[] = [];
+  for (const c of countries) {
+    for (const year of [2025, 2026, 2027]) {
+      paths.push({ params: { country: c.code, year: String(year) } });
+    }
+  }
+  return paths;
+}
+
+const { country, year } = Astro.params;
+const yearNum = parseInt(year, 10);
+const meta = getCountryMeta(country);
+
+let data: CountryData;
+try {
+  data = (await import(`../../../data/${country}/${year}.json`)).default;
+} catch {
+  return Astro.redirect('/404');
+}
+
+const months = getAllMonths(yearNum, data);
+
+function getHolidayHex(type: string): string {
+  switch(type) {
+    case 'public': return '#fecaca';
+    case 'observance': return '#fed7aa';
+    case 'traditional': return '#fde68a';
+    default: return '#e5e7eb';
+  }
+}
+---
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{meta?.name} {year}年假期日历 — 打印版</title>
+  <style>
+    @page { size: A4 portrait; margin: 8mm; }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .no-print { display: none !important; }
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    table { border-collapse: collapse; width: 100%; font-size: 11px; }
+    td { padding: 2px 3px; text-align: center; border: 1px solid #e5e7eb; width: 14.28%; }
+    th { padding: 4px; text-align: center; font-size: 10px; color: #9ca3af; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => { window.print(); });
+  </script>
+</head>
+<body>
+
+  <div class="no-print" style="background: #eff6ff; padding: 10px 16px; margin-bottom: 16px; border-radius: 8px; font-size: 13px; display: flex; justify-content: space-between; align-items: center;">
+    <span>🖨️ 打印页面 — 打印对话框应该已经自动弹出</span>
+    <span>
+      <select id="viewSelect" onchange="toggleView()" style="font-size:12px; padding:4px 8px; border-radius:4px; border:1px solid #d1d5db;">
+        <option value="12">全年 (12个月)</option>
+        <option value="6">半年 (前6个月)</option>
+      </select>
+    </span>
+  </div>
+
+  <h2 style="text-align:center; margin-bottom:4px;">{meta?.flag} {meta?.name} {year}年假期日历</h2>
+  <p style="text-align:center; font-size:12px; color:#6b7280; margin-bottom:12px;">
+    Holiday Calendar · holiday-calendar.pages.dev
+  </p>
+
+  <div id="calendarContainer" style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+    {months.map((month) => (
+      <div class="month-section">
+        <h3 style="font-size:13px; font-weight:600; margin-bottom:3px; border-bottom:2px solid #e5e7eb; padding-bottom:2px;">{month.monthName}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
+            </tr>
+          </thead>
+          <tbody>
+            {month.weeks.map((week) => (
+              <tr>
+                {week.map((day) => {
+                  const bgColor = day.holidays.length > 0
+                    ? getHolidayHex(day.holidays[0].type)
+                    : (day.isWorkday ? '#e5e7eb' : 'transparent');
+                  return (
+                    <td style={`background-color: ${bgColor}; ${day.holidays.length > 0 ? 'font-weight: 700;' : ''} ${!day.isCurrentMonth ? 'color: #d1d5db;' : ''}`}>
+                      {day.isCurrentMonth ? day.day : ''}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {month.holidays.length > 0 && (
+          <div style="font-size:8px; margin-top:2px; color:#6b7280;">
+            {month.holidays.map((h) => (
+              <span style={`background:${getHolidayHex(h.type)}; padding:0 2px; margin-right:2px; border-radius:2px;`}>{h.name}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <p style="text-align:center; font-size:11px; color:#9ca3af; margin-top:16px; border-top:1px solid #e5e7eb; padding-top:8px;">
+    数据来源：{meta?.sourceLabel || '各国政府官方网站'} · holiday-calendar.pages.dev
+  </p>
+
+  <script>
+    function toggleView() {
+      const container = document.getElementById('calendarContainer') as HTMLElement | null;
+      const select = document.getElementById('viewSelect') as HTMLSelectElement | null;
+      if (!container || !select) return;
+      const children = container.children;
+      for (let i = 0; i < children.length; i++) {
+        (children[i] as HTMLElement).style.display = select.value === '6' && i >= 6 ? 'none' : '';
+      }
+    }
+  </script>
+</body>
+</html>
