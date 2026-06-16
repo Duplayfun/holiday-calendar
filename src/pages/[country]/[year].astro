@@ -1,0 +1,104 @@
+---
+// src/pages/[country]/[year].astro
+import BaseLayout from '../../components/BaseLayout.astro';
+import Calendar from '../../components/Calendar.astro';
+import HolidayList from '../../components/HolidayList.astro';
+import YearTabs from '../../components/YearTabs.astro';
+import { getCountryMeta, countries } from '../../data/countries';
+import type { CountryData } from '../../types';
+
+export function getStaticPaths() {
+  const paths: { params: { country: string; year: string } }[] = [];
+  for (const c of countries) {
+    for (const year of [2025, 2026, 2027]) {
+      paths.push({ params: { country: c.code, year: String(year) } });
+    }
+  }
+  return paths;
+}
+
+const { country, year } = Astro.params;
+const yearNum = parseInt(year, 10);
+const meta = getCountryMeta(country);
+
+// Load holiday data dynamically
+let data: CountryData;
+try {
+  data = (await import(`../../data/${country}/${year}.json`)).default;
+} catch {
+  return Astro.redirect('/404');
+}
+
+const totalHolidayDays = data.holidays
+  .filter((h) => h.type !== 'observance')
+  .reduce((sum, h) => sum + (h.daysOff || 1), 0);
+
+const availableYears = [2025, 2026, 2027];
+---
+
+<BaseLayout
+  title={`${meta?.name || country} ${year}年假期日历`}
+  description={`查看${meta?.name || country}${year}年法定节假日安排，包括${data.holidays.slice(0, 3).map(h => h.name).join('、')}等假期，支持 iCal 订阅下载和打印。`}
+  canonicalUrl={`https://holiday-calendar.pages.dev/${country}/${year}/`}
+>
+  <div class="mb-6">
+    <!-- Country header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">
+          {meta?.flag} {meta?.name} · {year}年
+        </h1>
+        <p class="text-sm text-gray-500 mt-1">
+          {data.holidays.filter(h => h.type !== 'observance').length}个节假日 · {totalHolidayDays}天假期
+        </p>
+      </div>
+      <!-- Action buttons -->
+      <div class="flex gap-2 print-hide">
+        <a
+          href={`/ics/${country}-${year}.ics`}
+          class="inline-flex items-center gap-1 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+        >
+          📥 导入日历
+        </a>
+        <a
+          href={`/print/${country}/${year}/`}
+          target="_blank"
+          class="inline-flex items-center gap-1 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+        >
+          🖨️ 打印
+        </a>
+      </div>
+    </div>
+
+    <!-- Year tabs -->
+    <YearTabs country={country} currentYear={yearNum} availableYears={availableYears} />
+  </div>
+
+  <!-- Calendar grid -->
+  <Calendar data={data} />
+
+  <!-- Holiday list -->
+  <HolidayList data={data} />
+
+  <!-- Data source -->
+  <div class="mt-8 p-4 bg-gray-50 rounded-lg text-xs text-gray-500">
+    <p>
+      数据来源：
+      {meta?.sourceLabel && (
+        <a href={meta.sourceUrl} target="_blank" rel="noopener" class="text-blue-600 hover:underline">
+          {meta.sourceLabel}
+        </a>
+      )}
+      {!meta?.sourceLabel && '各国政府官方网站'}
+      · 最后更新 {data.year} 年
+      · <a href="/about/" class="text-blue-600 hover:underline">反馈错误</a>
+    </p>
+  </div>
+
+  <!-- 广告位预留 -->
+  <div class="mt-6 text-center print-hide">
+    <div class="inline-block border border-dashed border-gray-300 rounded-lg px-8 py-4 text-xs text-gray-400">
+      广告位预留 — 160×600
+    </div>
+  </div>
+</BaseLayout>
