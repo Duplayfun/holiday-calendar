@@ -1,0 +1,25 @@
+---
+// src/components/YearTabs.astro
+interface Props {
+  country: string;
+  currentYear: number;
+  availableYears: number[];
+}
+
+const { country, currentYear, availableYears } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-2 mb-4">
+  {availableYears.map((year) => (
+    <a
+      href={`/${country}/${year}/`}
+      class={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+        year === currentYear
+          ? 'bg-blue-600 text-white'
+          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+      }`}
+    >
+      {year}
+    </a>
+  ))}
+</div>

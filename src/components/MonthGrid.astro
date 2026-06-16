@@ -1,0 +1,66 @@
+---
+// src/components/MonthGrid.astro
+import { getWeekdayNames, getHolidayBgClass } from '../utils/calendar';
+import type { CalendarMonth, CalendarDay } from '../utils/calendar';
+
+interface Props {
+  month: CalendarMonth;
+}
+
+const { month } = Astro.props;
+const weekdayNames = getWeekdayNames();
+
+function getDayCellClass(day: CalendarDay): string {
+  const classes: string[] = [];
+  if (!day.isCurrentMonth) {
+    classes.push('text-gray-300');
+  }
+  if (day.holidays.length > 0) {
+    const bgClass = getHolidayBgClass(day.holidays[0].type);
+    classes.push(bgClass, 'font-semibold', 'rounded');
+  }
+  if (day.isWorkday) {
+    classes.push('bg-gray-200', 'text-gray-500', 'rounded');
+  }
+  return classes.join(' ');
+}
+---
+
+<div class="border border-gray-200 rounded-lg overflow-hidden">
+  <div class="bg-gray-50 px-3 py-2 text-center font-semibold text-sm text-gray-700">
+    {month.monthName}
+  </div>
+  <!-- Weekday headers -->
+  <div class="grid grid-cols-7 text-center text-xs text-gray-400 py-1">
+    {weekdayNames.map((name) => (
+      <span>{name}</span>
+    ))}
+  </div>
+  <!-- Day grid -->
+  <div class="grid grid-cols-7 text-center text-xs gap-px bg-gray-100">
+    {
+      month.weeks.flatMap((week) =>
+        week.map((day) => (
+          <div class={`py-1 bg-white ${getDayCellClass(day)}`}>
+            {day.isCurrentMonth ? day.day : ''}
+          </div>
+        ))
+      )
+    }
+  </div>
+  <!-- Holiday labels -->
+  {
+    month.holidays.length > 0 && (
+      <div class="px-2 py-1 border-t border-gray-100">
+        {month.holidays.map((h) => {
+          const bgClass = getHolidayBgClass(h.type);
+          return (
+            <span class={`inline-block text-xs px-1.5 py-0.5 rounded mr-1 mb-1 ${bgClass}`}>
+              {h.name} {h.date.slice(5)}
+            </span>
+          );
+        })}
+      </div>
+    )
+  }
+</div>

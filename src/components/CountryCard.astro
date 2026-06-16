@@ -1,0 +1,26 @@
+---
+// src/components/CountryCard.astro
+import type { CountryMeta } from '../types';
+
+interface Props {
+  country: CountryMeta;
+}
+
+const { country } = Astro.props;
+---
+
+<a
+  href={`/${country.code}/`}
+  class="block border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all text-center group"
+>
+  <div class="text-4xl mb-3">{country.flag}</div>
+  <h3 class="font-semibold text-lg text-gray-900 group-hover:text-blue-600 transition-colors">
+    {country.name}
+  </h3>
+  <p class="text-sm text-gray-500 mt-1">
+    {country.publicHolidayCount}个公休日
+  </p>
+  <p class="text-xs text-gray-400 mt-2 line-clamp-2">
+    {country.description}
+  </p>
+</a>
