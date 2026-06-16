@@ -1,0 +1,17 @@
+---
+// src/pages/[country]/index.astro — 重定向到今年
+import { countries, defaultYear } from '../../data/countries';
+
+export function getStaticPaths() {
+  return countries.map((c) => ({ params: { country: c.code } }));
+}
+
+const { country } = Astro.params;
+
+// Validate country exists
+if (!countries.some((c) => c.code === country)) {
+  return Astro.redirect('/404');
+}
+
+return Astro.redirect(`/${country}/${defaultYear}/`);
+---
