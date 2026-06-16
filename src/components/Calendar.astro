@@ -1,0 +1,17 @@
+---
+// src/components/Calendar.astro
+import MonthGrid from './MonthGrid.astro';
+import { getAllMonths } from '../utils/calendar';
+import type { CountryData } from '../types';
+
+interface Props {
+  data: CountryData;
+}
+
+const { data } = Astro.props;
+const months = getAllMonths(data.year, data);
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  {months.map((month) => <MonthGrid month={month} />)}
+</div>
