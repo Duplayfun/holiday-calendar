@@ -1,0 +1,16 @@
+{
+  "country": "de",
+  "year": 2026,
+  "timezone": "Europe/Berlin",
+  "holidays": [
+    { "name": "元旦", "nameEn": "New Year's Day (Neujahrstag)", "date": "2026-01-01", "type": "public" },
+    { "name": "耶稣受难日", "nameEn": "Good Friday (Karfreitag)", "date": "2026-04-03", "type": "public" },
+    { "name": "复活节周一", "nameEn": "Easter Monday (Ostermontag)", "date": "2026-04-06", "type": "public" },
+    { "name": "劳动节", "nameEn": "Labor Day (Tag der Arbeit)", "date": "2026-05-01", "type": "public" },
+    { "name": "耶稣升天日", "nameEn": "Ascension Day (Christi Himmelfahrt)", "date": "2026-05-14", "type": "public" },
+    { "name": "圣灵降临节周一", "nameEn": "Whit Monday (Pfingstmontag)", "date": "2026-05-25", "type": "public" },
+    { "name": "德国统一日", "nameEn": "German Unity Day (Tag der Deutschen Einheit)", "date": "2026-10-03", "type": "public" },
+    { "name": "圣诞节", "nameEn": "Christmas Day (1. Weihnachtstag)", "date": "2026-12-25", "type": "public" },
+    { "name": "节礼日", "nameEn": "Boxing Day (2. Weihnachtstag)", "date": "2026-12-26", "type": "public" }
+  ]
+}
