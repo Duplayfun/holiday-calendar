@@ -1,0 +1,70 @@
+{
+  "country": "cn",
+  "year": 2026,
+  "timezone": "Asia/Shanghai",
+  "holidays": [
+    {
+      "name": "元旦",
+      "nameEn": "New Year's Day",
+      "date": "2026-01-01",
+      "type": "public",
+      "daysOff": 1
+    },
+    {
+      "name": "春节",
+      "nameEn": "Chinese New Year",
+      "date": "2026-02-17",
+      "type": "traditional",
+      "daysOff": 7,
+      "notes": "2月17日至23日放假调休，2月14日（周六）、2月28日（周六）上班"
+    },
+    {
+      "name": "清明节",
+      "nameEn": "Qingming Festival",
+      "date": "2026-04-05",
+      "type": "traditional",
+      "daysOff": 3,
+      "notes": "4月5日至7日放假"
+    },
+    {
+      "name": "劳动节",
+      "nameEn": "Labor Day",
+      "date": "2026-05-01",
+      "type": "public",
+      "daysOff": 5,
+      "notes": "5月1日至5日放假调休，4月26日（周日）、5月9日（周六）上班"
+    },
+    {
+      "name": "端午节",
+      "nameEn": "Dragon Boat Festival",
+      "date": "2026-06-20",
+      "type": "traditional",
+      "daysOff": 3,
+      "notes": "6月20日至22日放假"
+    },
+    {
+      "name": "中秋节",
+      "nameEn": "Mid-Autumn Festival",
+      "date": "2026-09-27",
+      "type": "traditional",
+      "daysOff": 3,
+      "notes": "9月27日至29日放假"
+    },
+    {
+      "name": "国庆节",
+      "nameEn": "National Day",
+      "date": "2026-10-01",
+      "type": "public",
+      "daysOff": 7,
+      "notes": "10月1日至7日放假调休，9月20日（周日）、10月10日（周六）上班"
+    }
+  ],
+  "workdays": [
+    { "date": "2026-02-14", "notes": "春节调休补班" },
+    { "date": "2026-02-28", "notes": "春节调休补班" },
+    { "date": "2026-04-26", "notes": "劳动节调休补班" },
+    { "date": "2026-05-09", "notes": "劳动节调休补班" },
+    { "date": "2026-09-20", "notes": "国庆节调休补班" },
+    { "date": "2026-10-10", "notes": "国庆节调休补班" }
+  ]
+}

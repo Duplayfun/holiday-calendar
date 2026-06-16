@@ -1,0 +1,20 @@
+{
+  "country": "cn",
+  "year": 2025,
+  "timezone": "Asia/Shanghai",
+  "holidays": [
+    { "name": "元旦", "nameEn": "New Year's Day", "date": "2025-01-01", "type": "public", "daysOff": 1 },
+    { "name": "春节", "nameEn": "Chinese New Year", "date": "2025-01-29", "type": "traditional", "daysOff": 7, "notes": "1月29日至2月4日放假调休" },
+    { "name": "清明节", "nameEn": "Qingming Festival", "date": "2025-04-05", "type": "traditional", "daysOff": 3, "notes": "4月5日至7日放假" },
+    { "name": "劳动节", "nameEn": "Labor Day", "date": "2025-05-01", "type": "public", "daysOff": 5, "notes": "5月1日至5日放假调休" },
+    { "name": "端午节", "nameEn": "Dragon Boat Festival", "date": "2025-05-31", "type": "traditional", "daysOff": 3, "notes": "5月31日至6月2日放假" },
+    { "name": "中秋节+国庆节", "nameEn": "Mid-Autumn Festival & National Day", "date": "2025-10-01", "type": "public", "daysOff": 8, "notes": "10月1日至8日放假调休" }
+  ],
+  "workdays": [
+    { "date": "2025-01-26", "notes": "春节调休补班" },
+    { "date": "2025-02-08", "notes": "春节调休补班" },
+    { "date": "2025-04-27", "notes": "劳动节调休补班" },
+    { "date": "2025-09-28", "notes": "国庆节调休补班" },
+    { "date": "2025-10-11", "notes": "国庆节调休补班" }
+  ]
+}

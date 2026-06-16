@@ -1,0 +1,15 @@
+{
+  "country": "cn",
+  "year": 2027,
+  "timezone": "Asia/Shanghai",
+  "holidays": [
+    { "name": "元旦", "nameEn": "New Year's Day", "date": "2027-01-01", "type": "public", "daysOff": 1 },
+    { "name": "春节", "nameEn": "Chinese New Year", "date": "2027-02-06", "type": "traditional", "daysOff": 7, "notes": "2月6日至12日放假调休" },
+    { "name": "清明节", "nameEn": "Qingming Festival", "date": "2027-04-05", "type": "traditional", "daysOff": 3, "notes": "4月5日至7日放假" },
+    { "name": "劳动节", "nameEn": "Labor Day", "date": "2027-05-01", "type": "public", "daysOff": 5, "notes": "5月1日至5日放假调休" },
+    { "name": "端午节", "nameEn": "Dragon Boat Festival", "date": "2027-06-09", "type": "traditional", "daysOff": 3, "notes": "6月9日至11日放假" },
+    { "name": "中秋节", "nameEn": "Mid-Autumn Festival", "date": "2027-09-16", "type": "traditional", "daysOff": 3, "notes": "9月16日至18日放假" },
+    { "name": "国庆节", "nameEn": "National Day", "date": "2027-10-01", "type": "public", "daysOff": 7, "notes": "10月1日至7日放假调休" }
+  ],
+  "workdays": []
+}
