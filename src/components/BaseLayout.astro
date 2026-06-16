@@ -1,0 +1,66 @@
+---
+// src/components/BaseLayout.astro
+import '../styles/global.css';
+import '../styles/print.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+}
+
+const { title, description, canonicalUrl } = Astro.props;
+const siteName = 'Holiday Calendar';
+const fullTitle = `${title} — ${siteName}`;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <!-- TODO: add Google Analytics in a later task -->
+  </head>
+  <body class="min-h-screen bg-white text-gray-900 antialiased">
+    <!-- Header -->
+    <header class="print-hide border-b border-gray-200 bg-white sticky top-0 z-10">
+      <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
+        <a href="/" class="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors">
+          📅 {siteName}
+        </a>
+        <nav class="flex items-center gap-4 text-sm text-gray-600">
+          <a href="/subscribe/" class="hover:text-blue-600 transition-colors">订阅指南</a>
+          <a href="/about/" class="hover:text-blue-600 transition-colors">关于</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="mx-auto max-w-5xl px-4 py-6">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="print-hide border-t border-gray-200 bg-gray-50 mt-12">
+      <div class="mx-auto max-w-5xl px-4 py-8 text-sm text-gray-500">
+        <div class="flex flex-col sm:flex-row justify-between gap-4">
+          <div>
+            <p class="font-medium text-gray-700">📅 Holiday Calendar</p>
+            <p class="mt-1">各国公共假期日历，支持 iCal 订阅和打印</p>
+          </div>
+          <div class="flex gap-6">
+            <a href="/about/" class="hover:text-blue-600 transition-colors">关于本站</a>
+            <a href="/subscribe/" class="hover:text-blue-600 transition-colors">订阅指南</a>
+          </div>
+        </div>
+        <p class="mt-6 text-xs text-gray-400">
+          © 2026 Holiday Calendar. 数据来源为各国政府官方网站。
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
