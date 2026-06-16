@@ -1,11 +1,8 @@
 {
   "name": "holiday-calendar",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "description": "Multi-country public holiday calendar with iCal and print support",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
