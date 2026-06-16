@@ -1,0 +1,50 @@
+---
+// src/pages/subscribe.astro
+import BaseLayout from '../components/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="日历订阅指南"
+  description="如何将假期日历导入到您的 iPhone、Android 或 Google Calendar 中。"
+  canonicalUrl="https://holiday-calendar.pages.dev/subscribe/"
+>
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">📥 日历订阅指南</h1>
+
+  <div class="space-y-8 text-gray-700">
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">如何使用？</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-sm">
+        <li>在任意国家假期页点击「📥 导入日历」按钮</li>
+        <li>浏览器会下载一个 <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.ics</code> 文件</li>
+        <li>点击下载的文件，系统会自动打开日历应用</li>
+        <li>在弹出的对话框中确认添加即可</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">各平台详细说明</h2>
+
+      <h3 class="font-medium text-gray-800 mt-4">iPhone / iPad</h3>
+      <p class="text-sm">下载 .ics 文件后 → 点击文件 → 系统日历自动打开 → 点「添加全部」→ 完成</p>
+
+      <h3 class="font-medium text-gray-800 mt-4">Android</h3>
+      <p class="text-sm">下载 .ics 文件 → 打开 Google 日历 → 设置 → 导入 → 选择文件 → 导入</p>
+
+      <h3 class="font-medium text-gray-800 mt-4">Google Calendar (网页版)</h3>
+      <p class="text-sm">下载 .ics 文件 → 打开 calendar.google.com → 设置(齿轮) → 导入和导出 → 选择文件 → 导入</p>
+
+      <h3 class="font-medium text-gray-800 mt-4">Outlook Calendar</h3>
+      <p class="text-sm">下载 .ics 文件 → 打开 Outlook → 文件 → 打开和导出 → 导入/导出 → 导入 iCalendar 文件</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">温馨提示</h2>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        <li>每个 .ics 文件包含一个完整年份的假期数据</li>
+        <li>假期事件设置了提前 15 小时的通知提醒</li>
+        <li>假期日期以"全天事件"形式添加，不会占用具体时间段</li>
+        <li>建议年初导入当年日历，年底更新下一年的</li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

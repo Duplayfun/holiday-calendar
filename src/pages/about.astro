@@ -1,0 +1,52 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../components/BaseLayout.astro';
+import { countries } from '../data/countries';
+---
+
+<BaseLayout
+  title="关于本站"
+  description="Holiday Calendar 是一个免费的多国假期日历工具，支持 iCal 订阅和精美打印。"
+  canonicalUrl="https://holiday-calendar.pages.dev/about/"
+>
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">关于本站</h1>
+
+  <div class="prose max-w-none text-gray-700 space-y-4">
+    <p>
+      Holiday Calendar 是一个免费的多国假期日历工具。我们汇集了多个国家和地区的公共假期信息，
+      让您可以在一个地方查看、订阅和打印假期日历。
+    </p>
+
+    <h2 class="text-lg font-semibold text-gray-900 mt-6">目前覆盖</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      {countries.map((c) => (
+        <a href={`/${c.code}/`} class="block border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+          <span class="text-2xl">{c.flag}</span>
+          <span class="ml-2 font-medium text-gray-900">{c.name}</span>
+          <p class="text-xs text-gray-500 mt-1">{c.publicHolidayCount}个公休日</p>
+        </a>
+      ))}
+    </div>
+
+    <h2 class="text-lg font-semibold text-gray-900 mt-6">数据来源</h2>
+    <p>
+      假期数据来源于各国政府官方网站发布的公告。我们每年会检查并更新数据。
+      如果您发现任何错误，欢迎通过 GitHub Issues 反馈。
+    </p>
+    <ul class="list-disc pl-5 space-y-1 text-sm">
+      {countries.map((c) => (
+        <li>
+          {c.flag} {c.name} — <a href={c.sourceUrl} target="_blank" rel="noopener" class="text-blue-600 hover:underline">{c.sourceLabel}</a>
+        </li>
+      ))}
+    </ul>
+
+    <h2 class="text-lg font-semibold text-gray-900 mt-6">功能</h2>
+    <ul class="list-disc pl-5 space-y-1 text-sm">
+      <li>📥 <strong>iCal 日历订阅</strong>：下载 .ics 文件导入 iPhone、Android、Google Calendar 等</li>
+      <li>🖨️ <strong>精美打印</strong>：优化的打印版式，A4 纸打印效果最佳</li>
+      <li>📱 <strong>响应式设计</strong>：手机、平板、电脑均可流畅使用</li>
+      <li>🆓 <strong>完全免费</strong>：无需注册、无需付费</li>
+    </ul>
+  </div>
+</BaseLayout>
