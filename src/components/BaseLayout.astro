@@ -23,7 +23,20 @@ const fullTitle = `${title} — ${siteName}`;
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    <!-- TODO: add Google Analytics in a later task -->
+    <!-- Google Analytics -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      // @ts-expect-error — GA4 augments window at runtime
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){
+        // @ts-expect-error — GA4 global
+        dataLayer.push(arguments);
+      }
+      // @ts-expect-error — GA4 defined at runtime
+      gtag('js', new Date());
+      // @ts-expect-error — GA4 defined at runtime
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased">
     <!-- Header -->
