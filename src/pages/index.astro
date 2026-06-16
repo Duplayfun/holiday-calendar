@@ -1,0 +1,37 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../components/BaseLayout.astro';
+import CountryCard from '../components/CountryCard.astro';
+import { countries, defaultYear } from '../data/countries';
+---
+
+<BaseLayout
+  title={`${defaultYear}年各国假期日历`}
+  description="了解全球公共假期，规划完美旅程。提供中国、美国、德国等国家法定节假日日历，支持 iCal 订阅和精美打印。"
+  canonicalUrl="https://holiday-calendar.pages.dev/"
+>
+  <div class="text-center mb-10">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+      {defaultYear}年各国假期日历
+    </h1>
+    <p class="text-gray-500">
+      了解公共假期，规划完美旅程
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-2xl mx-auto">
+    {countries.map((c) => <CountryCard country={c} />)}
+    <!-- 占位卡片 -->
+    <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center text-gray-400 flex flex-col items-center justify-center min-h-[160px]">
+      <div class="text-2xl mb-2">🌍</div>
+      <p class="text-sm">更多国家即将上线...</p>
+    </div>
+  </div>
+
+  <!-- 广告位预留：首页底部横幅 -->
+  <div class="mt-12 text-center">
+    <div class="inline-block border border-dashed border-gray-300 rounded-lg px-8 py-4 text-xs text-gray-400">
+      广告位预留 — 728×90
+    </div>
+  </div>
+</BaseLayout>
