@@ -1,0 +1,12 @@
+/* src/styles/print.css — 全局打印重置 */
+@media print {
+  .print-hide { display: none !important; }
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
