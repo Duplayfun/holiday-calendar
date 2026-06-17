@@ -6,5 +6,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   output: 'static',
-  site: 'https://holiday-calendar.pages.dev',
+  site: 'https://duplayfun.github.io',
+  base: '/holiday-calendar/',
 });
